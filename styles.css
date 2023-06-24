@@ -1,0 +1,28 @@
+html {
+  /* 10px */
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  text-align: center;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: #212121;
+}
+
+.number {
+  margin: 0 auto 2rem;
+  padding: 1rem;
+  width: 5rem;
+  border: 0.2rem solid #7e7e7e;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.button-again {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
