@@ -17,11 +17,14 @@
     </header>
     <main>
       <p class="number">?</p>
-      <input type="number" name="number" />
+      <p class="message">🤔 Start guessing...</p>
+      <label><input type="number" name="number" class="field-number" /></label>
       <button class="button-check">Check</button>
-      <p class="message">Start guessing...</p>
-      <p class="score">Score: 50</p>
-      <p class="high-score">High score: 0</p>
+      <hr />
+      <div>
+        <p>📝 Score: <span class="score">50</span></p>
+        <p>⭐️ High score: <span class="high-score">0</span></p>
+      </div>
     </main>
     <button class="button-again">Play again</button>
     <script src="script.js"></script>

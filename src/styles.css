@@ -1,11 +1,27 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 html {
   /* 10px */
   font-size: 62.5%;
 }
 
+button {
+  cursor: pointer;
+}
+
+hr {
+  width: 20rem;
+  height: 0.1rem;
+  border: 0;
+  background-color: #7e7e7e;
+}
+
 body {
   position: relative;
-  text-align: center;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 1.6rem;
   line-height: 1.4;
@@ -13,17 +29,57 @@ body {
   background-color: #fff;
 }
 
+header {
+  margin-bottom: 3.2rem;
+  text-align: center;
+}
+
+header p {
+  font-style: italic;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .number {
   margin: 0 auto 2rem;
   padding: 1rem;
-  width: 5rem;
+  width: 15rem;
   border: 0.2rem solid #7e7e7e;
-  font-size: 2.8rem;
+  font-size: 4.8rem;
   font-weight: 700;
+  text-align: center;
+}
+
+.field-number {
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+  width: 10rem;
+  height: 5rem;
+  border: 0.2rem solid #7e7e7e;
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+  background-color: transparent;
+}
+
+.message {
+  font-size: 2rem;
+}
+
+.button-check {
+  margin-bottom: 2.4rem;
+  font-size: 1.8rem;
+  height: 4rem;
 }
 
 .button-again {
   position: absolute;
   top: 1rem;
   left: 1rem;
+  font-size: 1.4rem;
+  height: 2.8rem;
 }

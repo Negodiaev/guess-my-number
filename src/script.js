@@ -24,41 +24,43 @@ function checkNumber() {
   if (value === number) {
     // win
     numberElement.textContent = value;
-    message.textContent = 'You win!';
+    message.textContent = '🏆 You win!';
 
     if (score > highScore) {
       highScore = score;
-      highScoreElement.textContent = `High score: ${highScore}`;
+      highScoreElement.textContent = highScore;
     }
 
     disableElement(checkButton);
     disableElement(numberField);
 
     body.style.backgroundColor = '#b6f897';
-    numberElement.style.width = '15rem';
+    numberElement.style.width = '25rem';
   } else if (value > number) {
     // too high
     score--;
-    scoreElement.textContent = `Score: ${score}`;
+    scoreElement.textContent = score;
 
     if (score) {
-      message.textContent = 'Too high';
+      message.textContent = '↗️ Too high';
     } else {
-      message.textContent = 'You lose ...';
+      message.textContent = '🤷‍ You lose ...';
       disableElement(checkButton);
       disableElement(numberField);
+      body.style.backgroundColor = '#fb5353';
     }
   } else if (value < number) {
     // too low
     score--;
-    scoreElement.textContent = `Score: ${score}`;
+    scoreElement.textContent = score;
 
     if (score) {
-      message.textContent = 'Too low';
+      message.textContent = '↘️ Too low';
     } else {
-      message.textContent = 'You lose ...';
+      message.textContent = '🤷‍ You lose ...';
       disableElement(checkButton);
       disableElement(numberField);
+      body.style.backgroundColor = '#fb5353';
     }
   }
 }
@@ -73,14 +75,14 @@ function resetGame() {
 
   numberElement.textContent = '?';
   numberField.value = '';
-  message.textContent = 'Start guessing...';
-  scoreElement.textContent = `Score: ${score}`;
+  message.textContent = '🤔 Start guessing...';
+  scoreElement.textContent = score;
 
   disableElement(checkButton, false);
   disableElement(numberField, false);
 
   body.style.backgroundColor = '#fff';
-  numberElement.style.width = '5rem';
+  numberElement.style.width = '15rem';
 }
 
 checkButton.addEventListener('click', checkNumber);
