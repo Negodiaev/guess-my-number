@@ -4,6 +4,12 @@ let number = generateNumber();
 let score = 50;
 let highScore = 0;
 
+const colors = {
+  white: '#fff',
+  success: '#b6f897',
+  danger: '#fb5353',
+};
+
 // elements
 const { body } = document;
 const numberElement = document.querySelector('.number');
@@ -14,76 +20,73 @@ const scoreElement = document.querySelector('.score');
 const highScoreElement = document.querySelector('.high-score');
 const againButton = document.querySelector('.button-again');
 
-function generateNumber() {
-  return Math.trunc(Math.random() * 50) + 1;
-}
-
 function checkNumber() {
   const value = Number(numberField.value);
 
-  if (value === number) {
-    // win
-    numberElement.textContent = value;
-    message.textContent = '🏆 You win!';
+  if (!value) {
+    updateTextContent(message, '🚫 Enter a number...');
+  } else if (value === number) {
+    updateTextContent(numberElement, value);
+    updateTextContent(message, '🏆 Correct number!');
 
     if (score > highScore) {
       highScore = score;
-      highScoreElement.textContent = highScore;
+      updateTextContent(highScoreElement, highScore);
     }
 
     disableElement(checkButton);
     disableElement(numberField);
 
-    body.style.backgroundColor = '#b6f897';
-    numberElement.style.width = '25rem';
-  } else if (value > number) {
-    // too high
+    setCssProperty(body, 'backgroundColor', colors.success);
+    setCssProperty(numberElement, 'width', '25rem');
+  } else {
     score--;
-    scoreElement.textContent = score;
+    updateTextContent(scoreElement, score);
 
     if (score) {
-      message.textContent = '↗️ Too high';
+      updateTextContent(message, value > number ? '↗️ Too high' : '↘️ Too low');
     } else {
-      message.textContent = '🤷‍ You lose ...';
+      updateTextContent(message, '🤷‍ You lost the game ...');
       disableElement(checkButton);
       disableElement(numberField);
-      body.style.backgroundColor = '#fb5353';
-    }
-  } else if (value < number) {
-    // too low
-    score--;
-    scoreElement.textContent = score;
-
-    if (score) {
-      message.textContent = '↘️ Too low';
-    } else {
-      message.textContent = '🤷‍ You lose ...';
-      disableElement(checkButton);
-      disableElement(numberField);
-      body.style.backgroundColor = '#fb5353';
+      setCssProperty(body, 'backgroundColor', colors.danger);
     }
   }
-}
-
-function disableElement(element, value = true) {
-  element.disabled = value;
 }
 
 function resetGame() {
   number = generateNumber();
   score = 50;
 
-  numberElement.textContent = '?';
+  updateTextContent(numberElement, '?');
   numberField.value = '';
-  message.textContent = '🤔 Start guessing...';
-  scoreElement.textContent = score;
+  updateTextContent(message, '🤔 Start guessing...');
+  updateTextContent(scoreElement, score);
 
   disableElement(checkButton, false);
   disableElement(numberField, false);
 
-  body.style.backgroundColor = '#fff';
-  numberElement.style.width = '15rem';
+  setCssProperty(body, 'backgroundColor', colors.white);
+  setCssProperty(numberElement, 'width', '15rem');
 }
 
+// event listeners
 checkButton.addEventListener('click', checkNumber);
 againButton.addEventListener('click', resetGame);
+
+// helper functions
+function generateNumber() {
+  return Math.trunc(Math.random() * 50) + 1;
+}
+
+function updateTextContent(element, value) {
+  element.textContent = value;
+}
+
+function disableElement(element, value = true) {
+  element.disabled = value;
+}
+
+function setCssProperty(element, property, value) {
+  element.style[property] = value;
+}
